@@ -1,0 +1,61 @@
+PART A OUTPUT
+--------------
+
+Bestsellers (products appearing in all carts)
+Result:
+None
+
+Catalog Reach (products appearing in any cart)
+Result:
+Laptop
+Smartphone
+Headphones
+Smartwatch
+Tshirt
+Jeans
+Jacket
+Sneakers
+Clean Code
+Python Crash Course
+Deep Learning
+Blender
+Coffee Maker
+
+Exclusive Purchases (only customer 1 bought)
+Result:
+Blender
+
+Recommended Products for Customer 1
+Result:
+Smartphone
+Headphones
+Jacket
+Jeans
+Python Crash Course
+Deep Learning
+Coffee Maker
+
+Category Summary
+
+Electronics:
+Laptop
+Smartphone
+Headphones
+Smartwatch
+
+Clothing:
+Tshirt
+Jeans
+Jacket
+Sneakers
+
+Books:
+Clean Code
+Python Crash Course
+Deep Learning
+
+Home:
+Blender
+Coffee Maker
+Vacuum Cleaner
+Air Fryer
