@@ -1,0 +1,135 @@
+# Part C – Interview Ready
+
+## Q1 — Tuple Immutability Trap
+
+Consider the tuple:
+
+```
+t = ([1,2], [3,4])
+```
+
+Can we run:
+
+```
+t[0][0] = 99
+```
+
+### Answer
+
+Yes, this works.
+
+Even though tuples are **immutable**, the objects inside the tuple may still be **mutable**.
+
+In this example:
+
+* The tuple contains **lists**
+* Lists are **mutable**
+
+So the following modifies the list inside the tuple:
+
+```
+t[0][0] = 99
+```
+
+However, this would fail:
+
+```
+t[0] = [9,9]
+```
+
+because tuples do **not allow reassignment of elements**.
+
+### Key Concept
+
+Tuple immutability means **the references cannot change**, but **the objects referenced may still be mutable**.
+
+---
+
+## Q2 — Duplicate Detection
+
+Function to find duplicate elements in a list using sets.
+
+```
+def find_duplicates(lst):
+
+    seen = set()
+    duplicates = set()
+
+    for item in lst:
+
+        if item in seen:
+            duplicates.add(item)
+        else:
+            seen.add(item)
+
+    return duplicates
+```
+
+### Example
+
+```
+find_duplicates([1,2,3,2,4,5,1])
+```
+
+Output:
+
+```
+{1,2}
+```
+
+### Complexity
+
+Time Complexity: **O(n)**
+
+---
+
+## Q3 — Debug Problem
+
+Buggy code:
+
+```
+def unique_to_each(a, b):
+    result = set(a) - set(b)
+    return list(result)
+```
+
+### Problem
+
+This function only returns elements unique to **list A**.
+
+Example:
+
+```
+unique_to_each([1,2,3], [3,4,5])
+```
+
+Output:
+
+```
+[1,2]
+```
+
+But we also need elements unique to **list B**.
+
+Expected output:
+
+```
+[1,2,4,5]
+```
+
+### Correct Solution
+
+```
+def unique_to_each(a, b):
+
+    set_a = set(a)
+    set_b = set(b)
+
+    return list((set_a - set_b) | (set_b - set_a))
+```
+
+### Explanation
+
+* `set_a - set_b` → elements only in A
+* `set_b - set_a` → elements only in B
+* `|` → union of both results
