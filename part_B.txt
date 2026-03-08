@@ -1,0 +1,31 @@
+PART B OUTPUT
+-------------
+
+Bundle Discount System
+
+Bundle Deals:
+Electronics + Books → 10% discount
+Clothing + Home → 15% discount
+Electronics + Clothing → 5% discount
+
+
+Performance Benchmark
+
+Set creation time (100000 iterations):
+0.013 seconds
+
+Frozenset creation time (100000 iterations):
+0.014 seconds
+
+
+Observation:
+Both set and frozenset have very similar creation speeds.
+However, frozenset is immutable and can be used as dictionary keys.
+
+output after running script:
+Cart Categories: {'Electronics', 'Books'}
+Applicable Discount: 10 %
+
+Performance Benchmark (100000 iterations)
+Set creation time: 0.012
+Frozenset creation time: 0.014

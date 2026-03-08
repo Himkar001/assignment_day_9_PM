@@ -153,3 +153,111 @@ This helps in understanding catalog distribution.
 ### Learning Outcome
 
 This exercise demonstrates how **Python tuples and sets can be used to efficiently model and analyze data in real-world applications like e-commerce systems.**
+## Part B – Frozenset Bundle System
+
+### Overview
+
+In this part of the assignment, we explored **frozenset**, an immutable version of Python’s set.
+The goal was to understand when frozensets are useful in real-world systems and implement a **bundle discount system** for an e-commerce platform.
+
+---
+
+### What is a Frozenset?
+
+A **frozenset** is an immutable version of a Python set.
+
+Once created, its elements **cannot be modified**, meaning you cannot add or remove items.
+
+Example:
+
+```python
+bundle = frozenset({"Electronics", "Books"})
+```
+
+---
+
+### Difference Between Set and Frozenset
+
+| Feature                 | set | frozenset |
+| ----------------------- | --- | --------- |
+| Mutable                 | Yes | No        |
+| Can add/remove elements | Yes | No        |
+| Can be dictionary key   | No  | Yes       |
+
+Since dictionary keys must be **immutable**, `frozenset` is useful when storing fixed groups of values.
+
+---
+
+### Bundle Discount System
+
+A dictionary named **`bundle_discounts`** was created where:
+
+* **Key** → `frozenset` of product categories
+* **Value** → discount percentage
+
+Example:
+
+```python
+bundle_discounts = {
+ frozenset({"Electronics", "Books"}): 10
+}
+```
+
+This means if a customer buys items from **Electronics and Books**, they receive a **10% discount**.
+
+---
+
+### Bundle Checker Function
+
+A function called **`check_bundle_discount(cart)`** was implemented.
+
+Purpose:
+
+* Extract product categories from the cart
+* Check if the cart qualifies for any bundle discount
+
+Example logic:
+
+```python
+categories = {product.category for product in cart}
+```
+
+If a matching bundle is found, the corresponding **discount percentage** is returned.
+
+---
+
+### Performance Benchmark
+
+To compare performance, the creation time of `set` and `frozenset` was measured using the **timeit module**.
+
+Test configuration:
+
+* **100000 iterations**
+
+Example code:
+
+```python
+timeit.timeit("set([1,2,3,4])", number=100000)
+```
+
+Observation:
+
+* The creation time of `set` and `frozenset` is **very similar**.
+* The main difference is **immutability**, not performance.
+
+---
+
+### Key Concepts Practiced
+
+* Frozenset creation
+* Immutable data structures
+* Using frozenset as dictionary keys
+* Bundle logic implementation
+* Performance benchmarking with `timeit`
+
+---
+
+### Learning Outcome
+
+This exercise demonstrates how immutable data structures like **frozenset** are useful when storing **fixed combinations of values**, such as bundle deals, permissions, or configuration groups in real-world systems.
+
