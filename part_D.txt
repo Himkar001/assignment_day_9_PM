@@ -1,0 +1,98 @@
+# Part D – AI Augmented Task
+
+## AI Prompt Used
+
+"Write a Python function that calculates the Jaccard similarity between two sets of strings. Explain what Jaccard similarity is and where it is used in industry."
+
+---
+
+## AI Output
+
+### What is Jaccard Similarity
+
+Jaccard similarity is a metric used to measure the similarity between two sets.
+
+It is calculated as:
+
+J(A,B) = |A ∩ B| / |A ∪ B|
+
+Where:
+
+* A ∩ B → intersection of sets
+* A ∪ B → union of sets
+
+The value ranges between **0 and 1**.
+
+* 0 → completely different sets
+* 1 → identical sets
+
+---
+
+### Python Implementation
+
+```python
+def jaccard_similarity(set_a, set_b):
+
+    intersection = set_a.intersection(set_b)
+
+    union = set_a.union(set_b)
+
+    if len(union) == 0:
+        return 0
+
+    return len(intersection) / len(union)
+```
+
+---
+
+### Test Case
+
+```python
+set_a = {'python','java','sql'}
+set_b = {'python','sql','docker','aws'}
+
+print(jaccard_similarity(set_a,set_b))
+```
+
+### Output
+
+```
+0.5
+```
+
+Explanation:
+
+Intersection = {'python','sql'} → size = 2
+Union = {'python','java','sql','docker','aws'} → size = 4
+
+Jaccard similarity = 2 / 4 = **0.5**
+
+---
+
+## Evaluation
+
+### Is the formula correct?
+
+Yes.
+The formula correctly calculates similarity using:
+
+```
+|A ∩ B| / |A ∪ B|
+```
+
+---
+
+### Does it handle edge cases?
+
+Yes.
+
+If both sets are empty, the union size becomes zero.
+The function handles this case by returning **0**.
+
+---
+
+## Industry Applications
+
+Jaccard similarity is widely used in many real-world systems.
+
+It is used in **recommendation systems** to compare user preferences, in **natural language processing (NLP)** to measure similarity between documents, and in **plagiarism detection systems** to identify overlapping text between documents. It is also used in **search engines and clustering algorithms** to compare datasets efficiently.

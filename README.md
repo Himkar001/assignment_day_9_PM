@@ -261,3 +261,258 @@ Observation:
 
 This exercise demonstrates how immutable data structures like **frozenset** are useful when storing **fixed combinations of values**, such as bundle deals, permissions, or configuration groups in real-world systems.
 
+## Part C – Interview Ready Questions
+
+### Overview
+
+This section focuses on **common Python interview concepts** related to tuples and sets.
+It includes conceptual explanations, coding exercises, and debugging tasks that test understanding of Python data structures.
+
+---
+
+### Q1 – Tuple Immutability Trap
+
+Consider the tuple:
+
+```python
+t = ([1,2], [3,4])
+```
+
+Can we execute:
+
+```python
+t[0][0] = 99
+```
+
+#### Answer
+
+Yes, this operation works.
+
+Even though **tuples are immutable**, the objects stored inside them may still be **mutable**.
+
+In this example:
+
+* The tuple contains **lists**
+* Lists are **mutable objects**
+
+Therefore, modifying an element inside the list is allowed.
+
+Example result:
+
+```python
+([99,2], [3,4])
+```
+
+However, this would fail:
+
+```python
+t[0] = [9,9]
+```
+
+because tuple elements themselves **cannot be reassigned**.
+
+---
+
+### Q2 – Duplicate Detection Using Sets
+
+A function was implemented to find duplicate elements in a list using set operations.
+
+Example implementation:
+
+```python
+def find_duplicates(lst):
+
+    seen = set()
+    duplicates = set()
+
+    for item in lst:
+        if item in seen:
+            duplicates.add(item)
+        else:
+            seen.add(item)
+
+    return duplicates
+```
+
+Example usage:
+
+```python
+find_duplicates([1,2,3,2,4,5,1])
+```
+
+Output:
+
+```
+{1, 2}
+```
+
+Time Complexity: **O(n)**
+
+---
+
+### Q3 – Debugging Problem
+
+Original buggy function:
+
+```python
+def unique_to_each(a, b):
+    result = set(a) - set(b)
+    return list(result)
+```
+
+#### Issue
+
+This function only returns elements unique to **list A**, not both lists.
+
+Example:
+
+```python
+unique_to_each([1,2,3], [3,4,5])
+```
+
+Output:
+
+```
+[1,2]
+```
+
+Expected result:
+
+```
+[1,2,4,5]
+```
+
+#### Correct Implementation
+
+```python
+def unique_to_each(a, b):
+
+    set_a = set(a)
+    set_b = set(b)
+
+    return list((set_a - set_b) | (set_b - set_a))
+```
+
+#### Explanation
+
+* `set_a - set_b` → elements only in list A
+* `set_b - set_a` → elements only in list B
+* `|` → union of both results
+
+This returns elements unique to each list.
+
+---
+
+### Key Concepts Covered
+
+* Tuple immutability
+* Mutable vs immutable objects
+* Set operations
+* Efficient duplicate detection
+* Debugging Python functions
+* Interview-style Python questions
+
+---
+
+### Learning Outcome
+
+This section demonstrates how Python tuples and sets behave in practical scenarios and highlights important concepts frequently tested in **technical interviews and coding assessments**.
+
+## Part D – AI Augmented Task (Jaccard Similarity)
+
+### Overview
+
+In this section, an AI tool was used to generate a Python function that calculates **Jaccard Similarity** between two sets of strings. The task involved evaluating the AI-generated solution, testing it with sample data, and researching where this metric is used in real-world applications.
+
+---
+
+### What is Jaccard Similarity?
+
+Jaccard similarity is a metric used to measure the similarity between two sets.
+
+Formula:
+
+```
+J(A,B) = |A ∩ B| / |A ∪ B|
+```
+
+Where:
+
+* **A ∩ B** → Intersection of the two sets
+* **A ∪ B** → Union of the two sets
+
+The value ranges between **0 and 1**:
+
+* **0** → No common elements
+* **1** → Identical sets
+
+---
+
+### Python Implementation
+
+```python id="1ah1wh"
+def jaccard_similarity(set_a, set_b):
+
+    intersection = set_a.intersection(set_b)
+    union = set_a.union(set_b)
+
+    if len(union) == 0:
+        return 0
+
+    return len(intersection) / len(union)
+```
+
+---
+
+### Test Example
+
+```python id="p3f7vf"
+set_a = {'python','java','sql'}
+set_b = {'python','sql','docker','aws'}
+
+print(jaccard_similarity(set_a,set_b))
+```
+
+Output:
+
+```
+0.5
+```
+
+Explanation:
+
+Intersection = `{'python','sql'}` → size = 2
+Union = `{'python','java','sql','docker','aws'}` → size = 4
+
+Jaccard Similarity = **2 / 4 = 0.5**
+
+---
+
+### Edge Case Handling
+
+The implementation includes a condition to handle cases where both sets are empty.
+
+```python id="z91rsk"
+if len(union) == 0:
+    return 0
+```
+
+This prevents division-by-zero errors.
+
+---
+
+### Industry Applications
+
+Jaccard similarity is widely used in several industry applications:
+
+* **Recommendation Systems** – comparing user interests or purchase history
+* **Natural Language Processing (NLP)** – measuring similarity between documents
+* **Plagiarism Detection** – identifying overlapping text between documents
+* **Search Engines** – ranking results based on similarity between queries and documents
+
+---
+
+### Learning Outcome
+
+This exercise demonstrates how AI tools can assist in generating code solutions and how developers must evaluate correctness, handle edge cases, and understand practical industry applications.
+
